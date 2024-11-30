@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/RPDVA6/static/css/main.aa0cf867.css",
-    "main.js": "/RPDVA6/static/js/main.160d448b.js",
+    "main.js": "/RPDVA6/static/js/main.a1dfed6e.js",
     "index.html": "/RPDVA6/index.html",
     "main.aa0cf867.css.map": "/RPDVA6/static/css/main.aa0cf867.css.map",
-    "main.160d448b.js.map": "/RPDVA6/static/js/main.160d448b.js.map"
+    "main.a1dfed6e.js.map": "/RPDVA6/static/js/main.a1dfed6e.js.map"
   },
   "entrypoints": [
     "static/css/main.aa0cf867.css",
-    "static/js/main.160d448b.js"
+    "static/js/main.a1dfed6e.js"
   ]
 }
