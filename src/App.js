@@ -12,7 +12,6 @@ class App extends Component {
   }
 
   set_data = (csv_data) => {
-    console.log(csv_data)
     this.setState({ data: csv_data });
   }
 

@@ -11,21 +11,16 @@ class Child1 extends Component {
   }
 
   componentDidMount() {
-    //console.log(this.props.csv_data) // Use this data as default. When the user will upload data this props will provide you the updated data
     this.render_chart()
   }
 
   componentDidUpdate() {
-    //console.log(this.props.csv_data)
-    console.log(this.state.model)
     this.render_chart()
   }
 
   render_chart() {
     // Setting up margins and container
     const data = this.props.csv_data
-    console.log(data)
-    //console.log(data)
     if(data.length === 0) return
     const margin = {left: 80, top: 0, right: 200, bottom: 200}
     const h = 500
@@ -43,11 +38,9 @@ class Child1 extends Component {
       .attr('transform', `translate(${margin.left}, ${margin.top})`)
     
     // Generate Scales
-    //console.log(data)
     const maxSum = d3.max(
       data.map(d => d["GPT-4"] + d["Gemini"] + d["PaLM-2"] + d["Claude"] + d["LLaMA-3.1"])
     )
-    //console.log(maxSum)
     const xScale = d3.scaleTime().domain(d3.extent(data, d=> d.Date)).range([0, w])
     const yScale = d3.scaleLinear().domain([0, maxSum]).range([h, 0])
 
@@ -65,6 +58,7 @@ class Child1 extends Component {
     // Generate Path series
     var stackedSeries = stackGenerator(data) //This makes a series of area data for each area.
 
+    console.log(stackedSeries)
     // Create Area Generator
     var areaGen = d3.area()
             .x(d => xScale(d.data.Date))
@@ -83,7 +77,7 @@ class Child1 extends Component {
       .attr('width', w/6)
       .attr('transform', `translate(${margin.left + w + margin.right/2}, ${margin.top + h/2})`)
     
-    legend.selectAll('.legend-square').data(models).join('rect')
+    legend.selectAll('.legend-square').data(models.reverse()).join('rect')
       .attr('x', 0)
       .attr('y', (d, i) => i * ((h/4)/models.length + 20))
       .attr('height', 20)
@@ -128,8 +122,6 @@ class Child1 extends Component {
             .attr('width', smallWidth)
             .attr('transform', `translate(${smallMargin.left}, ${smallMargin.top})`)
           // Create Scales
-          //console.log(data)
-          //console.log(data.map(d => d.Date))
           var smallX = d3.scaleBand().domain(data.map(d => d.Date)).range([0, smallWidth]).padding(0.2)
           var smallY = d3.scaleLinear().domain([0, d3.max(data, function(d) {return d[model]})]).range([smallHeight, 0])
 
